@@ -20,6 +20,9 @@ const UserInput = styled.input `
     border: 1px solid #ccc;
     padding: 15px 10px;
     border-radius: 15px;
+
+    width: 20.5rem;
+    /* margin: 0 auto 35px auto; */
 `
 
 export const Input = ({nameField, typeInput, placeHolder}: UserInput) => {

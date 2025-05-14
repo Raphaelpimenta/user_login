@@ -13,6 +13,9 @@ const UserButton = styled.button `
     padding: 5px 0;
     color: #d8d8d8;
     cursor: pointer;
+
+    width: 12rem;
+    margin: 0 auto;
 `
 export const Button = ({nameButton, event}: BtnLogin) => {
     return (
