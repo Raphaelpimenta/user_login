@@ -1,7 +1,8 @@
 import styled from "styled-components"
 
 const BoxForm = styled.section `
-    background-color: #f2f2f2;
+    /* background-color: #feedbe; */
+    background-color: #d5d5d5;
     border-radius: 15px;
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -2,6 +2,8 @@ import styled from "styled-components"
 import { Login } from "../Services/login"
 import { Button } from "./Button"
 import { Input } from "./Input"
+import { useState } from "react"
+
 
 
 const BoxInput = styled.form `
@@ -26,7 +28,25 @@ const TextIntro = styled.p `
     
 `
 
+
+const UserInput = styled.input `
+    margin-bottom: 15px;
+    outline: rebeccapurple;
+    border: 1px solid #ccc;
+    padding: 15px 10px;
+    border-radius: 15px;
+
+    width: 20.5rem;
+    /* margin: 0 auto 35px auto; */
+`
+
+
+
+
 export const Card = () => {
+    const [email, setEmail ] = useState('')
+    console.log(email)
+
     return (
         <>
 
@@ -35,12 +55,17 @@ export const Card = () => {
                 <TextTitle>Bem vindo</TextTitle>
                 <TextIntro>Faça o login em nossa plataforma ou cadastre-se e tenha a melhor experiência conosco.</TextIntro>
 
-                
-                <Input nameField="E-mail" typeInput="email" placeHolder="Digite seu e-mail"/>
+                {/* <Input nameField="Nome" typeInput="text" placeHolder="Digite seu nome" /> */}
+                <Input nameField="E-mail" typeInput="email" placeHolder="Digite seu e-mail" />
+                {/* value={email} ) */}
 
                 <Input nameField="Senha" typeInput="password" placeHolder="Digite sua senha"/>
 
-                <Button event={Login} nameButton="Login"/>
+                <UserInput type="text" placeholder="Teste teste" value={email} onChange={(event) => setEmail(event.target.value)}/>
+
+
+
+                <Button event={() => {Login(email)}} nameButton="Login"/>
             </BoxInput>
 
 

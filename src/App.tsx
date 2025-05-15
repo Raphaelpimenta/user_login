@@ -3,7 +3,8 @@ import { Card } from "./Components/Card"
 import { Layout } from "./Components/Layout"
 
 const Box = styled.div `
-  background: #172b1c;
+  /* background: #28683b; */
+  background: #212121;
   width: 100vw;
   height: 100vh;
   position: absolute;

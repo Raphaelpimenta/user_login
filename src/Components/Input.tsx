@@ -1,9 +1,16 @@
+import { useState} from "react"
+//import type { MouseEventHandler } from "react"
 import styled from "styled-components"
 
 interface UserInput {
-    nameField: string,
+    nameField: string
     typeInput: string
     placeHolder: string
+    // valueInput: string
+    // event: () => void
+    // nameButton: string
+    //event: MouseEventHandler
+    // event: () => string
 }
 
 const UserLabel = styled.label `
@@ -15,7 +22,7 @@ const UserLabel = styled.label `
 `
 
 const UserInput = styled.input `
-    margin-bottom: 35px;
+    margin-bottom: 15px;
     outline: rebeccapurple;
     border: 1px solid #ccc;
     padding: 15px 10px;
@@ -26,10 +33,16 @@ const UserInput = styled.input `
 `
 
 export const Input = ({nameField, typeInput, placeHolder}: UserInput) => {
+    // const [valorInput, setValorInput ] = useState('')
+    // console.log('oioi', valorInput)
+    
     return (
         <>
-            <UserLabel htmlFor={nameField}>{nameField}</UserLabel>
-            <UserInput type={typeInput} name={nameField} id={nameField} placeholder={placeHolder}/>
+            <UserLabel htmlFor={nameField} >{nameField}</UserLabel>
+
+            <UserInput type={typeInput} name={nameField} id={nameField} placeholder={placeHolder} />
+
+            {/* <UserButton onClick={() => {event}}>{nameButton}</UserButton> */}
         </>
     )
 }
