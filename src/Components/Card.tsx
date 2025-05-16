@@ -30,6 +30,17 @@ const TextIntro = styled.p `
 `
 
 
+
+
+
+const UserLabel = styled.label `
+    font-size: 18px;
+    font-weight: 300;
+    font-family: sans-serif;
+    margin-bottom: 5px;
+    color: #2a2a2a;
+`
+
 const UserInput = styled.input `
     margin-bottom: 15px;
     outline: rebeccapurple;
@@ -48,8 +59,6 @@ interface UserData {
 }
 
 
-
-
 export const Card = () => {
     const [email, setEmail ] = useState<string>('')
     const [UserData, setUserData] = useState<null | UserData>()
@@ -62,7 +71,7 @@ export const Card = () => {
         
         getData()
     }, [])
-    console.log(UserData)
+    console.log('eu sou user data', UserData)
 
     return (
         <>
@@ -72,15 +81,16 @@ export const Card = () => {
                 <TextTitle>Bem vindo</TextTitle>
                 <TextIntro>Faça o login em nossa plataforma ou cadastre-se e tenha a melhor experiência conosco.</TextIntro>
 
-                <b>{UserData?.name}</b>
+                {/* <b>{UserData?.name}</b> */}
 
-                {/* <Input nameField="Nome" typeInput="text" placeHolder="Digite seu nome" /> */}
-                <Input nameField="E-mail" typeInput="email" placeHolder="Digite seu e-mail" />
-                {/* value={email} ) */}
+            
+                {/* <Input nameField="E-mail" typeInput="email" placeHolder="Digite seu e-mail" />
+                <Input nameField="Senha" typeInput="password" placeHolder="Digite sua senha"/> */}
+                <UserLabel htmlFor="email">E-mail</UserLabel>
+                <UserInput type="email" name="email" id="email" placeholder="Digite seu e-mail" value={email} onChange={(event) => setEmail(event.target.value)}/>
 
-                <Input nameField="Senha" typeInput="password" placeHolder="Digite sua senha"/>
-
-                <UserInput type="text" placeholder="Teste teste" value={email} onChange={(event) => setEmail(event.target.value)}/>
+                <UserLabel htmlFor="password">Senha</UserLabel>
+                <UserInput type="password" name="password" id="password" placeholder="Digite seu e-mail"/>
 
 
 

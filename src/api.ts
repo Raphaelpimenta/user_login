@@ -1,7 +1,7 @@
 //Simulação de api
 const conta = {
     name: "raphael",
-    email: "teste@me",
+    email: "login@teste.com",
     password: '12345'
 }
 
