@@ -2,7 +2,8 @@ import styled from "styled-components"
 import { Login } from "../Services/login"
 import { Button } from "./Button"
 import { Input } from "./Input"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { api } from "../api"
 
 
 
@@ -40,12 +41,28 @@ const UserInput = styled.input `
     /* margin: 0 auto 35px auto; */
 `
 
+interface UserData {
+    name: string
+    email: string
+    password: string
+}
+
 
 
 
 export const Card = () => {
-    const [email, setEmail ] = useState('')
-    console.log(email)
+    const [email, setEmail ] = useState<string>('')
+    const [UserData, setUserData] = useState<null | UserData>()
+
+    useEffect(() => {
+        const getData = async () => {
+            const data: any | UserData = await api
+            setUserData(data)
+        }
+        
+        getData()
+    }, [])
+    console.log(UserData)
 
     return (
         <>
@@ -54,6 +71,8 @@ export const Card = () => {
                 
                 <TextTitle>Bem vindo</TextTitle>
                 <TextIntro>Faça o login em nossa plataforma ou cadastre-se e tenha a melhor experiência conosco.</TextIntro>
+
+                <b>{UserData?.name}</b>
 
                 {/* <Input nameField="Nome" typeInput="text" placeHolder="Digite seu nome" /> */}
                 <Input nameField="E-mail" typeInput="email" placeHolder="Digite seu e-mail" />
