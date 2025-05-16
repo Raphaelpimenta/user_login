@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Login } from "../Services/login"
 import { Button } from "./Button"
-import { Input } from "./Input"
+// import { Input } from "./Input"
 import { useEffect, useState } from "react"
 import { api } from "../api"
 
@@ -80,7 +80,7 @@ export const Card = () => {
                 
                 <TextTitle>Bem vindo</TextTitle>
                 <TextIntro>Faça o login em nossa plataforma ou cadastre-se e tenha a melhor experiência conosco.</TextIntro>
-
+                {UserData === null || UserData === undefined ? <h1>Loading...</h1> : <h1>Olá, {UserData.name}</h1>}
                 {/* <b>{UserData?.name}</b> */}
 
             

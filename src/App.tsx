@@ -1,28 +1,23 @@
-import styled from "styled-components"
-import { Card } from "./Components/Card"
-import { Layout } from "./Components/Layout"
+// import styled from "styled-components"
+// import { Card } from "./Components/Card"
+// import { Layout } from "./Components/Layout"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Home from "./Pages/Home"
 
-const Box = styled.div `
-  /* background: #28683b; */
-  /* background: #212121; */
-  background: linear-gradient(to right, #000000, #434343);;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  
-`
+
 
 function App() {
 
   return (
     <>
-    <Box>
-        <Layout>
-          <Card />
-        </Layout>
-    </Box>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}/>
+        <Route path="/conta" element={<h1>Conta aqui</h1>}/>
+
+      
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }
