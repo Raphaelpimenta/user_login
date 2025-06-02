@@ -4,6 +4,7 @@ const conta = {
     email: "login@teste.com",
     password: '12345',
     balance: 1000000,
+    id: '1'
 }
 
 export const api = new Promise((resolve) => {

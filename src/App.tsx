@@ -23,7 +23,7 @@ function App() {
     <Box>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/conta" element={<Conta />}/>
+        <Route path="/conta/:id" element={<Conta />}/>
 
       
       </Routes>

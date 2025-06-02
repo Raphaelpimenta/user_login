@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { CardInfo } from "./CardInfo"
 import { useEffect, useState } from "react"
 import { api } from "../api"
+import { useNavigate, useParams } from "react-router-dom"
 
 const SimpleGrid = styled.div`
     display: flex;
@@ -25,6 +26,7 @@ interface UserData {
     email: string
     password: string
     balance: number
+    id: string
 }
 
 export const Conta = () => {
@@ -40,7 +42,19 @@ export const Conta = () => {
         getData()
     }, [])
 
-    console.log('eu sou user data', UserData)
+    // console.log(UserData)
+
+    const AcessoUser = new Date()
+
+    const actualDate = `${AcessoUser.getDay()}/ ${AcessoUser.getMonth()}/ ${AcessoUser.getFullYear()} - ${AcessoUser.getHours()}: ${AcessoUser.getMinutes()}`
+
+    const { id } = useParams()
+    const navigate = useNavigate()
+    // console.log(id)
+
+    if(UserData && id !== UserData.id) {
+        navigate('/')
+    }
 
 
     return (
@@ -54,7 +68,7 @@ export const Conta = () => {
                 ) : (
                     <>
                     <BoxInfo>
-                        <CardInfo text="Informações do acesso" mainContent={`Olá ${UserData?.name}`} content="22/02/1998"/>
+                        <CardInfo text="Informações do acesso" mainContent={`Olá ${UserData?.name}`} content={actualDate}/>
                     </BoxInfo>
 
                     <BoxInfo>
