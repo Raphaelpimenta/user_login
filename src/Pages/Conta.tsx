@@ -1,8 +1,9 @@
 import styled from "styled-components"
 import { CardInfo } from "./CardInfo"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { api } from "../api"
 import { useNavigate, useParams } from "react-router-dom"
+import { AppContext } from "../App"
 
 const SimpleGrid = styled.div`
     display: flex;
@@ -29,7 +30,12 @@ interface UserData {
     id: string
 }
 
+
+
 export const Conta = () => {
+
+    const context = useContext(AppContext)
+    console.log('Passando um estado global através do AppContext', context)
 
     const [UserData, setUserData] = useState<null | UserData>()
 
