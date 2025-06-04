@@ -2,7 +2,9 @@ import styled from "styled-components"
 import { Login } from "../Services/login"
 import { Button } from "./Button"
 // import { Input } from "./Input"
-import {  useState } from "react"
+import {  useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { AppContext } from "./Context"
 // import { api } from "../api"
 
 
@@ -56,7 +58,22 @@ const UserInput = styled.input `
 
 
 export const Card = () => {
+
     const [email, setEmail ] = useState<string>('')
+    const { setIsLoggedIn } = useContext(AppContext)
+    const navigate = useNavigate()
+
+    const validateUser = async (email: string) => {
+        const loggedIn = await Login(email)
+
+        if(!loggedIn) {
+           return alert("E-mail inválido")
+        }
+
+        
+        setIsLoggedIn(true)
+        navigate('/conta/1')
+    }
     
 
     return (
@@ -80,7 +97,7 @@ export const Card = () => {
 
 
 
-                <Button event={() => {Login(email)}} nameButton="Login"/>
+                <Button event={() => validateUser(email)} nameButton="Login"/>
             </BoxInput>
 
 

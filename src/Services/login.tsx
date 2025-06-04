@@ -1,19 +1,23 @@
+//import { useContext } from "react"
 import { api } from "../api"
+//import { AppContext } from "../Components/Context"
+//import { useNavigate } from "react-router-dom"
 
-export const Login = async (email: string): Promise<void> => {
+export const Login = async (email: string): Promise<boolean> => {
+    // const { setIsLoggedIn } = useContext(AppContext)
+    // const navigate = useNavigate()
+
 
     const data: any = await api
 
-    console.log(data.email)
-    console.log(email)
-
-
     if (email !== data.email) {
-        return alert('Email inválido')
+        return false
 
     }
 
-    alert(`Bem-vindo ${email}`)
+    // setIsLoggedIn(true)
+    // navigate(`/${data.id}`)
+    return true
 
     
 }

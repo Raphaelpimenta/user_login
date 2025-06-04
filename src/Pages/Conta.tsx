@@ -3,7 +3,7 @@ import { CardInfo } from "./CardInfo"
 import { useContext, useEffect, useState } from "react"
 import { api } from "../api"
 import { useNavigate, useParams } from "react-router-dom"
-import { AppContext } from "../App"
+import { AppContext } from "../Components/Context"
 
 const SimpleGrid = styled.div`
     display: flex;
@@ -34,10 +34,20 @@ interface UserData {
 
 export const Conta = () => {
 
-    const context = useContext(AppContext)
-    console.log('Passando um estado global através do AppContext', context)
+    // const context = useContext(AppContext)
+    // console.log('Passando um estado global através do AppContext', context)
 
     const [UserData, setUserData] = useState<null | UserData>()
+
+    const { id } = useParams()
+    const navigate = useNavigate()
+    const { isLoggedIn } = useContext(AppContext)
+
+    !isLoggedIn && navigate('/') //Verificação se o login é realmente false
+    
+    if(UserData && id !== UserData.id) {
+        navigate('/')
+    }
 
     useEffect(() => {
         const getData = async () => {
@@ -54,13 +64,10 @@ export const Conta = () => {
 
     const actualDate = `${AcessoUser.getDay()}/ ${AcessoUser.getMonth()}/ ${AcessoUser.getFullYear()} - ${AcessoUser.getHours()}: ${AcessoUser.getMinutes()}`
 
-    const { id } = useParams()
-    const navigate = useNavigate()
+    
     // console.log(id)
 
-    if(UserData && id !== UserData.id) {
-        navigate('/')
-    }
+    
 
 
     return (
