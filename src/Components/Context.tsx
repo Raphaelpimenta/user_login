@@ -12,6 +12,8 @@ export const AppContext = createContext({} as IAppContext)
 export const AppContextProvider = ({children}: any) => {
   const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false)
 
+  console.log('context', isLoggedIn)
+  
   const user = 'Raphael'
   // const isLoggedIn = false //Verificação se o usuário está logado 
 

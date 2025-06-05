@@ -42,12 +42,9 @@ export const Conta = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const { isLoggedIn } = useContext(AppContext)
+    console.log('oioi', isLoggedIn)
 
     !isLoggedIn && navigate('/') //Verificação se o login é realmente false
-    
-    if(UserData && id !== UserData.id) {
-        navigate('/')
-    }
 
     useEffect(() => {
         const getData = async () => {
@@ -56,9 +53,13 @@ export const Conta = () => {
         }
         
         getData()
+
     }, [])
 
     // console.log(UserData)
+    if(UserData && id !== UserData.id) {
+        navigate('/')
+    }
 
     const AcessoUser = new Date()
 
@@ -80,15 +81,15 @@ export const Conta = () => {
                     <p>Carregando...</p>
                 ) : (
                     <>
-                    <BoxInfo>
-                        <CardInfo text="Informações do acesso" mainContent={`Olá ${UserData?.name}`} content={actualDate}/>
-                    </BoxInfo>
+                        <BoxInfo>
+                            <CardInfo text="Informações do acesso" mainContent={`Olá ${UserData?.name}`} content={actualDate}/>
+                        </BoxInfo>
 
-                    <BoxInfo>
-                        <CardInfo text="Informações da conta" mainContent={`Saldo`} content={`R$ ${UserData?.balance}`}/>
-                    </BoxInfo>
+                        <BoxInfo>
+                            <CardInfo text="Informações da conta" mainContent={`Saldo`} content={`R$ ${UserData?.balance}`}/>
+                        </BoxInfo>
                     </>
-                )
+                    )
                 } 
         
 

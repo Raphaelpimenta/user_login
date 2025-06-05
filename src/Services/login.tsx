@@ -13,11 +13,11 @@ export const Login = async (email: string): Promise<boolean> => {
     if (email !== data.email) {
         return false
 
-    }
-
+    } 
+    
+    return true
     // setIsLoggedIn(true)
     // navigate(`/${data.id}`)
-    return true
 
     
 }

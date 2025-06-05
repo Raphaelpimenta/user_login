@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 interface BtnLogin {
     nameButton: string
-    event: MouseEventHandler
+    onClick: MouseEventHandler
 }
 
 const UserButton = styled.button `
@@ -17,10 +17,10 @@ const UserButton = styled.button `
     width: 12rem;
     margin: 0 auto;
 `
-export const Button = ({nameButton, event}: BtnLogin) => {
+export const Button = ({nameButton, onClick}: BtnLogin) => {
     return (
         <>
-            <UserButton onClick={event}>{nameButton}</UserButton>
+            <UserButton onClick={onClick}>{nameButton}</UserButton>
         </>
     )
 }
