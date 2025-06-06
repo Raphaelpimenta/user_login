@@ -7,6 +7,7 @@ import { Button } from "../Components/Button"
 import { AppContext } from "../Components/Context"
 import { useNavigate } from "react-router-dom"
 import { Login } from "../Services/login"
+import { changeLocalStorage } from "../Services/storage"
 
 
 const TextTitle = styled.h1 `
@@ -34,7 +35,6 @@ const UserLabel = styled.label `
 
 const UserInput = styled.input `
     margin-bottom: 15px;
-    outline: rebeccapurple;
     border: 1px solid #ccc;
     padding: 15px 10px;
     border-radius: 15px;
@@ -44,23 +44,24 @@ const UserInput = styled.input `
 `
 const Home = () => {
     const [email, setEmail ] = useState<string>('')
-
     const { setIsLoggedIn } = useContext(AppContext)
+
     const navigate = useNavigate()
 
+    
     const validateUser = async (email: string) => {
         const loggedIn = await Login(email)
-
+        
         if(!loggedIn) {
             return alert("E-mail inválido")
         }
         
         
         setIsLoggedIn(true)
+        changeLocalStorage({ login: true })
         navigate('/conta/1')
-
     }
-
+   
     return (
         <>
             <Layout>
@@ -82,6 +83,8 @@ const Home = () => {
 
 
                 <Button onClick={() => validateUser(email)} nameButton="Login"/>
+
+                    {/* <div onClick={() => validateUser(email)}>oioioi</div> */}
                 </Card>
             </Layout>
         </>

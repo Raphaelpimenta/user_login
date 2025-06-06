@@ -7,9 +7,11 @@ import styled from "styled-components"
 import { Conta } from "./Pages/Conta"
 //import { createContext } from "react"
 import { AppContextProvider } from "./Components/Context"
+import { createLocalStorage, getAllLocalStorage } from "./Services/storage"
 
 const Box = styled.div `
-  background: linear-gradient(to top, #0f0c29, #302b63, #24243e);
+  /* background: linear-gradient(to top, #0f0c29, #302b63, #24243e); */
+  background-color: #292929;
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -18,6 +20,13 @@ const Box = styled.div `
   `
 
 function App() {
+
+  if(!getAllLocalStorage()){
+    createLocalStorage()
+
+  }
+
+  
 
   return (
     <>

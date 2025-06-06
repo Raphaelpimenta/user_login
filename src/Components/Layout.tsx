@@ -6,10 +6,9 @@ const BoxForm = styled.section `
     border-radius: 15px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin: 10rem auto;
+    margin: 25rem auto;
     width: 900px;
     height: 500px;
-    
     align-items: center;
     gap: 40px;
 `;

@@ -42,19 +42,17 @@ export const Conta = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     const { isLoggedIn } = useContext(AppContext)
-    console.log('oioi', isLoggedIn)
+    
 
-    !isLoggedIn && navigate('/') //Verificação se o login é realmente false
+    //!isLoggedIn && navigate('/') //Verificação se o login é realmente false
 
-    useEffect(() => {
-        const getData = async () => {
-            const data: any | UserData = await api
-            setUserData(data)
-        }
-        
-        getData()
+    if(isLoggedIn === false) {
+        navigate('/') 
+    }
 
-    }, [])
+    console.log('isLoggedIn', isLoggedIn)
+
+    
 
     // console.log(UserData)
     if(UserData && id !== UserData.id) {
@@ -68,7 +66,15 @@ export const Conta = () => {
     
     // console.log(id)
 
-    
+    useEffect(() => {
+        const getData = async () => {
+            const data: any | UserData = await api
+            setUserData(data)
+        }
+        
+        getData()
+
+    }, [])
 
 
     return (
@@ -91,6 +97,8 @@ export const Conta = () => {
                     </>
                     )
                 } 
+
+                
         
 
             
