@@ -10,5 +10,5 @@ const conta = {
 export const api = new Promise((resolve) => {
     setTimeout(() =>{
         resolve(conta)
-    }, 3000)
+    }, 2000)
 })
