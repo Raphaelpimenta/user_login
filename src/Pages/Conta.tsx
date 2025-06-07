@@ -4,12 +4,15 @@ import { useContext, useEffect, useState } from "react"
 import { api } from "../api"
 import { useNavigate, useParams } from "react-router-dom"
 import { AppContext } from "../Components/Context"
+import { Button } from "../Components/Button"
+import { changeLocalStorage } from "../Services/storage"
 
 const SimpleGrid = styled.div`
     display: flex;
     gap: 40px;
     justify-content: center;
     align-items: center;
+    position: relative;
 `
 
 const BoxInfo = styled.div`
@@ -20,6 +23,13 @@ const BoxInfo = styled.div`
     border-radius: 18px;
     margin: 50px 0px;
     
+`
+
+const BoxLogout = styled.div`
+    display: block;
+    position: absolute;
+    top: 100%;
+    /* left: 15%; */
 `
 
 interface UserData {
@@ -41,21 +51,21 @@ export const Conta = () => {
 
     const { id } = useParams()
     const navigate = useNavigate()
-    const { isLoggedIn } = useContext(AppContext)
-    
+    const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
+
 
     //!isLoggedIn && navigate('/') //Verificação se o login é realmente false
 
-    if(isLoggedIn === false) {
-        navigate('/') 
+    if (isLoggedIn === false) {
+        navigate('/')
     }
 
     console.log('isLoggedIn', isLoggedIn)
 
-    
+
 
     // console.log(UserData)
-    if(UserData && id !== UserData.id) {
+    if (UserData && id !== UserData.id) {
         navigate('/')
     }
 
@@ -63,15 +73,19 @@ export const Conta = () => {
 
     const actualDate = `${AcessoUser.getDay()}/ ${AcessoUser.getMonth()}/ ${AcessoUser.getFullYear()} - ${AcessoUser.getHours()}: ${AcessoUser.getMinutes()}`
 
-    
-    // console.log(id)
+
+    const logout = () => {
+        setIsLoggedIn(false)
+        changeLocalStorage({ login: false })
+        navigate('/')
+    }
 
     useEffect(() => {
         const getData = async () => {
             const data: any | UserData = await api
             setUserData(data)
         }
-        
+
         getData()
 
     }, [])
@@ -80,30 +94,35 @@ export const Conta = () => {
     return (
         <>
 
-        <SimpleGrid>
+            <SimpleGrid>
                 {
-                    UserData === null || UserData === undefined ? 
-                (
-                    <p>Carregando...</p>
-                ) : (
-                    <>
-                        <BoxInfo>
-                            <CardInfo text="Informações do acesso" mainContent={`Olá ${UserData?.name}`} content={actualDate}/>
-                        </BoxInfo>
+                    UserData === null || UserData === undefined ?
+                        (
+                            <p>Carregando...</p>
+                        ) : (
+                            <>
+                                <BoxInfo>
+                                    <CardInfo text="Informações do acesso" mainContent={`Olá ${UserData?.name}`} content={actualDate} />
+                                </BoxInfo>
 
-                        <BoxInfo>
-                            <CardInfo text="Informações da conta" mainContent={`Saldo`} content={`R$ ${UserData?.balance}`}/>
-                        </BoxInfo>
-                    </>
-                    )
-                } 
+                                <BoxInfo>
+                                    <CardInfo text="Informações da conta" mainContent={`Saldo`} content={`R$ ${UserData?.balance}`} />
+                                </BoxInfo>
 
-                
-        
 
-            
-        </SimpleGrid>
-        
+
+                            </>
+                        )
+                }
+
+                <BoxLogout>
+                    <Button onClick={() => (logout())} nameButton="Sair" />
+                </BoxLogout>
+
+
+
+            </SimpleGrid>
+
         </>
     )
 }
