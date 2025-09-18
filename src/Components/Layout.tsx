@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 const BoxForm = styled.section `
-    /* background-color: #feedbe; */
     background-color: #d5d5d5;
     border-radius: 15px;
     display: grid;

@@ -28,7 +28,6 @@ export const AppContextProvider = ({children}: any) => {
   
   
   const user = 'Raphael'
-  // const isLoggedIn = false //Verificação se o usuário está logado 
 
   return (
   

@@ -1,13 +1,4 @@
 import styled from "styled-components"
-// import { Login } from "../Services/login"
-// import { Button } from "./Button"
-// import { Input } from "./Input"
-// import {  useContext, useState } from "react"
-// import { useNavigate } from "react-router-dom"
-// import { AppContext } from "./Context"
-// import { api } from "../api"
-
-
 
 const BoxInput = styled.form `
     display: grid;
@@ -26,9 +17,7 @@ export const Card = ({children}: any) => {
         <>
 
             <BoxInput>
-                {children}
-                
-                
+                {children}        
             </BoxInput>
 
 

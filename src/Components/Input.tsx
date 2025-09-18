@@ -5,11 +5,6 @@ interface UserInput {
     nameField: string
     typeInput: string
     placeHolder: string
-    // valueInput: string
-    // event: () => void
-    // nameButton: string
-    //event: MouseEventHandler
-    // event: () => string
 }
 
 const UserLabel = styled.label `
